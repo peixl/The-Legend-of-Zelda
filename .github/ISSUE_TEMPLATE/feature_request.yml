@@ -1,0 +1,37 @@
+name: Feature request / content suggestion
+description: Suggest a new feature or improvement to the guide content
+title: "[Feature]: "
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem does this solve?
+      description: Describe the gap or the guide content that is missing/inaccurate.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - Guide content (BOTW / TOTK)
+        - Internationalization (i18n)
+        - SEO / structured data / AI access
+        - Performance / accessibility
+        - Tooling / CI / docs
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional context
+    validations:
+      required: false

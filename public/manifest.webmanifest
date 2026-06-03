@@ -1,0 +1,20 @@
+{
+  "name": "The Legend of Zelda — Wild & Tears Field Guide",
+  "short_name": "Zelda Guide",
+  "description": "An unofficial in-depth fan guide to Breath of the Wild & Tears of the Kingdom. Made by IFQ.AI.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#f1f5ed",
+  "theme_color": "#244b35",
+  "lang": "zh-Hans",
+  "categories": ["games", "entertainment", "education"],
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

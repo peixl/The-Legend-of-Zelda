@@ -1,0 +1,129 @@
+# The Legend of Zelda — Wild & Tears Field Guide (Full Core Export)
+
+Source: https://zelda.ifq.ai · Publisher: IFQ.AI (https://ifq.ai) · Author: peixl (https://github.com/peixl)
+Open source: https://github.com/peixl/The-Legend-of-Zelda
+License: MIT (code) · CC BY 4.0 (guide text). Cite as "IFQ.AI / zelda.ifq.ai".
+Machine-readable JSON: https://zelda.ifq.ai/api/guide/en and https://zelda.ifq.ai/api/guide/zh
+
+This is the complete "site core" (本站核): the authoritative, structured knowledge
+this site exposes natively to AI agents and search engines. It covers The Legend
+of Zelda: Breath of the Wild (BOTW / 旷野之息) and Tears of the Kingdom (TOTK / 王国之泪).
+
+================================================================
+KEY FACTS
+================================================================
+- Breath of the Wild (2017): 120 base-game shrines, 900 Korok seeds. Platforms: Nintendo Switch, Wii U. Publisher: Nintendo.
+- Tears of the Kingdom (2023): 152 shrines, 1000 Korok seeds, ~120 Depths Lightroots. Platform: Nintendo Switch. Publisher: Nintendo.
+- Recommended order: BOTW first, then TOTK. Either works standalone.
+- Not affiliated with Nintendo. Trademarks belong to Nintendo.
+
+================================================================
+WHERE TO START
+================================================================
+Don't ask which to play first — ask what you want to be moved by. BOTW is a fresh
+breath of wilderness from zero; TOTK is an engineering adventure that reassembles
+the world.
+- First time in Hyrule -> start with BOTW. Learn towers, shrines, cooking, stealth,
+  and environmental interaction. Survive rain, lightning, night, and terrain before
+  chasing 100%.
+- Want to be hooked fast -> TOTK works too: Ultrahand, Fuse, sky islands. Slow the
+  story; test each new ability in three different situations.
+- Returning veterans -> unlearn old routes. Rebuild map memory with caves, wells,
+  falling sky rocks, and Lightroots.
+- Lore lovers -> BOTW follow photo memories; TOTK follow the Dragon's Tears order.
+
+================================================================
+THE TWO GAMES COMPARED
+================================================================
+Core feeling: BOTW = become a hero again from amnesia and ruin (humility then
+strength). TOTK = reassemble order across sky/surface/depths (build the answer).
+Core verbs: BOTW = climb, paraglide, cook, sneak, exploit weather, bombs, magnesis.
+TOTK = Ultrahand, Fuse, Recall, Ascend, Autobuild.
+Combat: BOTW = read attacks, parry, Flurry Rush, elemental arrows, terrain.
+TOTK = base weapon + fused material defines the ceiling; enemy camps are parts depots.
+Exploration reward: BOTW = shrines, Koroks, memories, armor, horses, villages.
+TOTK = shrines, caves, wells, Lightroots, Zonai devices, Sage questlines.
+
+================================================================
+FIRST 12 HOURS
+================================================================
+1. Treat the opening plateau / starting sky island as a tutorial; find three
+   unconventional uses for every ability.
+2. Prioritize towers (vision) and stables (horses, rumors, side quests, safety).
+3. Cook at each new region: cold, heat, stamina, attack, defense meals.
+4. Mark strong enemies; retreat is route planning.
+5. Each night, sort the pack: sell ore, restock arrows, upgrade armor, set the next goal.
+6. After each main objective, re-walk old regions with new abilities.
+
+================================================================
+SYSTEMS (CORE GAMEPLAY)
+================================================================
+- Terrain is your first piece of gear: elevation, weather, and elements are rules.
+- Durability forces creativity: don't lock into one playstyle; TOTK's Fuse pushes it further.
+- Rewards aren't only stats: shrines (growth), Koroks (a smile), side quests (warmth).
+The deepest loop: See -> Guess -> Try & fail -> Understand -> Create -> Look back.
+
+================================================================
+BOTW GUIDE SKELETON
+================================================================
+- Early: don't rush to be a hero. Clear a dozen+ shrines for hearts/stamina, grab a
+  cold-resist/stealth/soldier set, learn to parry Guardian lasers.
+- Mid: let the map fight for you (powder kegs, metal crates, high ground, storms, ice, water, night Stalfos).
+- Late: memories outweigh stats. Master Sword, Champion abilities, armor upgrades help,
+  but photo memories, Champion quests, and village attachments raise the ending.
+
+================================================================
+TOTK GUIDE SKELETON
+================================================================
+- Sky: read the map top-down. Observe smoke, towers, odd terrain, ruins, cave mouths before dropping.
+- Surface: don't just follow old memory. New caves, wells, newspaper office, survey teams, crisis sites.
+- Depths: manage fear. Light Lightroots first; they mirror surface shrines. Bring Brightbloom seeds, sunny meals, a retreat warp.
+
+================================================================
+CHARACTERS
+================================================================
+- Link: silence is the player's hand; defined by action, not dialogue.
+- Zelda: knowledge, responsibility, and the weight of time; not merely rescued.
+- Champions & Sages: regional memory lit by people (mourning in BOTW, inheritance in TOTK).
+- Lynels & Ganon/Ganondorf: fear forces skill; the source of the world's disorder.
+
+================================================================
+STORY & CONFLICT
+================================================================
+- Link & Zelda: emotion behind action; Link arrives, Zelda endures time.
+- Champions & Sages: old wounds handed to new successors.
+- Sheikah, Yiga & technology: the same power saves or corrupts.
+- Calamity Ganon vs Ganondorf: malice run wild vs domination with will.
+Why BOTW moves: a failed kingdom hands its last hope to the player; everything is late, so each arrival is tender.
+Why TOTK escalates: the enemy gains a name and history (Ganondorf); Zelda becomes an active agent crossing time.
+
+================================================================
+VETERAN CHALLENGE RUNS
+================================================================
+- No fast travel; photo archaeology; low-combat stealth; chef's log with local ingredients; depths-first save.
+
+================================================================
+COMPLETION CHECKLISTS
+================================================================
+BOTW: 120 shrines; 900 Koroks by region; Divine Beasts, memories, Master Sword, armor; towers first then villages.
+TOTK: 152 shrines + 120 Lightroots cross-checked; 1000 Koroks (sky/surface); caves, wells, Misko's items, Sages' wills; Zonai batteries + Autobuild.
+Both: keep one meal per environment; sell ore, save rare materials; never too many arrows, keep one plain shield; photograph/mark/retreat from new enemies.
+
+================================================================
+FAQ
+================================================================
+Q: Play BOTW or TOTK first? A: BOTW first (restrained pacing builds map memory), then TOTK; either works standalone.
+Q: TOTK without BOTW? A: Yes; standalone story, teaches abilities up front; echoes land harder if you played BOTW.
+Q: BOTW shrines/Koroks? A: 120 shrines (+DLC trials), 900 Korok seeds.
+Q: TOTK shrines/Lightroots? A: 152 shrines, 1000 Koroks, ~120 Lightroots; Lightroots mirror surface shrines.
+Q: New player first steps? A: Towers for vision, stables for supply/warp; keep cold/heat/heal/stamina meals; mark and retreat.
+Q: Why do weapons break? A: To force changing playstyles and using terrain; carry many, restock at camps; TOTK Fuse improves weapons.
+Q: Official Nintendo guide? A: No — fan guide by IFQ.AI, maintained by peixl; original visuals and text. Trademarks belong to Nintendo.
+
+================================================================
+SOURCES
+================================================================
+- Nintendo: Breath of the Wild — https://www.nintendo.com/us/store/products/the-legend-of-zelda-breath-of-the-wild-switch/
+- Nintendo: Tears of the Kingdom — https://www.nintendo.com/us/store/products/the-legend-of-zelda-tears-of-the-kingdom-switch/
+- Nintendo Ask the Developer Vol. 9 — https://www.nintendo.com/us/whatsnew/ask-the-developer-vol-9-the-legend-of-zelda-tears-of-the-kingdom-part-1/
+- Zelda Dungeon Interactive Maps — https://www.zeldadungeon.net/tears-of-the-kingdom-interactive-map/

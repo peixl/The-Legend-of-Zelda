@@ -32,6 +32,18 @@ body {
     Inter, "Noto Sans SC", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei",
     Arial, sans-serif;
   letter-spacing: 0;
+  overflow-wrap: break-word;
+  word-break: normal;
+}
+
+h1,
+h2,
+h3,
+p,
+li,
+summary,
+dd {
+  overflow-wrap: anywhere;
 }
 
 a {
@@ -1000,6 +1012,85 @@ details p {
   color: #fff1c7;
   font-size: 13px;
   padding: 8px 10px;
+}
+
+.lang-switch {
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: 4px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 9px;
+  padding: 3px;
+}
+
+.lang-switch a {
+  border-radius: 6px;
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1;
+  padding: 7px 10px;
+}
+
+.lang-switch a:hover {
+  color: #fff;
+}
+
+.lang-switch a.is-active {
+  background: var(--gold);
+  color: #21160a;
+}
+
+.faq-list {
+  display: grid;
+  gap: 12px;
+  margin: 22px auto 0;
+  max-width: 900px;
+}
+
+.faq-item summary {
+  font-weight: 800;
+  justify-content: space-between;
+}
+
+.faq-item summary::after {
+  content: "+";
+  color: var(--moss);
+  flex: 0 0 auto;
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.faq-item[open] summary::after {
+  content: "\2212";
+}
+
+.footer-brand {
+  align-items: center;
+}
+
+.footer-brand-mark {
+  background: var(--gold);
+  border: none !important;
+  color: #21160a !important;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  padding: 8px 12px !important;
+}
+
+.footer-disclaimer {
+  color: rgba(255, 255, 255, 0.62);
+  font-size: 13px;
+}
+
+.footer-meta span,
+.footer-sources span {
+  align-self: center;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 13px;
+  font-weight: 700;
 }
 
 @media (max-width: 980px) {

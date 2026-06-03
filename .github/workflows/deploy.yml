@@ -14,9 +14,10 @@ jobs:
     name: Build & deploy (production)
     runs-on: ubuntu-latest
     env:
-      # Account ID is not a secret (it appears in dashboard URLs); only the API
-      # token must be stored as a GitHub secret.
-      CLOUDFLARE_ACCOUNT_ID: aa5a03f6f5846a8f65934ad94bb82f7e
+      # Set this as a repository variable (Settings → Secrets and variables →
+      # Actions → Variables), not a secret: the account ID is not sensitive (it
+      # appears in dashboard URLs). Only CLOUDFLARE_API_TOKEN must be a secret.
+      CLOUDFLARE_ACCOUNT_ID: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
     steps:
       - uses: actions/checkout@v4
 

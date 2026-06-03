@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Live site — zelda.ifq.ai
+    url: https://zelda.ifq.ai
+    about: Browse the live guide before filing an issue.
+  - name: IFQ.AI
+    url: https://ifq.ai
+    about: Learn more about the team behind this project.
