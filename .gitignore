@@ -24,6 +24,10 @@
 /dist
 .wrangler
 
+# local scratch / agent work artifacts (screenshots, dist tarballs, etc.)
+/work
+/outputs
+
 # misc
 .DS_Store
 *.pem
