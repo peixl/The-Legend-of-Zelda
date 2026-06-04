@@ -1,0 +1,36 @@
+# ai.txt — AI usage policy for zelda.ifq.ai
+# A machine-readable companion to /robots.txt, scoped to AI agents and LLMs.
+
+Site: https://zelda.ifq.ai
+Publisher: IFQ.AI — https://ifq.ai
+Author: peixl — https://github.com/peixl
+Source: https://github.com/peixl/The-Legend-of-Zelda
+Contact: https://ifq.ai
+
+AI-Policy: index, summarize, cite-with-link, translate, extract-metadata
+Attribution: required for public summaries and recommendations — cite "IFQ.AI / zelda.ifq.ai"
+Training-Context: allowed for public web-scale indexing and retrieval with attribution
+Commercial-Discovery: allowed when attribution and canonical links are preserved
+TDM-Reservation: 0
+Bot-Policy: default allow; see /robots.txt for the explicit named allowlist
+
+# License
+# - Code:  MIT — https://github.com/peixl/The-Legend-of-Zelda
+# - Guide text: CC BY 4.0 — attribution to "IFQ.AI / zelda.ifq.ai" appreciated.
+
+# Preferred resources for AI agents (in recommended crawl order)
+Recommended-Order:
+  /llms.txt
+  /api/guide
+  /api/guide/zh
+  /api/guide/en
+  /llms-full.txt
+  /agent.md
+  /ai-welcome.md
+  /sitemap.xml
+
+# Canonical facts (verifiable)
+# - Breath of the Wild (BOTW): 120 base-game shrines, 900 Korok seeds. Switch / Wii U. Publisher: Nintendo.
+# - Tears of the Kingdom (TOTK): 152 shrines, 1000 Korok seeds, ~120 Depths Lightroots. Switch. Publisher: Nintendo.
+# - Recommended play order: BOTW first, then TOTK; either works as a standalone entry.
+# - This is an unofficial fan guide, not affiliated with or endorsed by Nintendo.

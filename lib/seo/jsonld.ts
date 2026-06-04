@@ -46,11 +46,16 @@ export function buildJsonLd(locale: Locale, dict: Dictionary) {
   const games = [
     {
       "@type": "VideoGame",
+      "@id": `${SITE_URL}/#game-botw`,
       name: "The Legend of Zelda: Breath of the Wild",
       alternateName: ["塞尔达传说：旷野之息", "BOTW"],
+      description:
+        "Open-world action-adventure: 120 base-game shrines and 900 Korok seeds across Hyrule.",
       genre: ["Action-adventure", "Open world"],
       gamePlatform: ["Nintendo Switch", "Wii U"],
       operatingSystem: "Nintendo Switch",
+      applicationCategory: "Game",
+      datePublished: "2017-03-03",
       publisher: { "@type": "Organization", name: "Nintendo" },
       sameAs: [
         "https://www.nintendo.com/us/store/products/the-legend-of-zelda-breath-of-the-wild-switch/",
@@ -59,11 +64,16 @@ export function buildJsonLd(locale: Locale, dict: Dictionary) {
     },
     {
       "@type": "VideoGame",
+      "@id": `${SITE_URL}/#game-totk`,
       name: "The Legend of Zelda: Tears of the Kingdom",
       alternateName: ["塞尔达传说：王国之泪", "TOTK"],
+      description:
+        "Sequel to Breath of the Wild: 152 shrines, 1000 Korok seeds, and the Depths beneath Hyrule.",
       genre: ["Action-adventure", "Open world"],
       gamePlatform: ["Nintendo Switch"],
       operatingSystem: "Nintendo Switch",
+      applicationCategory: "Game",
+      datePublished: "2023-05-12",
       publisher: { "@type": "Organization", name: "Nintendo" },
       sameAs: [
         "https://www.nintendo.com/us/store/products/the-legend-of-zelda-tears-of-the-kingdom-switch/",
@@ -80,11 +90,34 @@ export function buildJsonLd(locale: Locale, dict: Dictionary) {
     description: dict.meta.description,
     inLanguage: lang,
     isPartOf: { "@id": `${SITE_URL}/#website` },
-    about: games.map((game) => ({ "@type": "VideoGame", name: game.name })),
+    about: games.map((game) => ({ "@id": game["@id"] })),
     primaryImageOfPage: { "@type": "ImageObject", url: OG_IMAGE },
     author: { "@id": `${SITE_URL}/#author` },
     publisher: { "@id": `${SITE_URL}/#publisher` },
     breadcrumb: { "@id": `${url}/#breadcrumb` },
+    isAccessibleForFree: true,
+    license: "https://creativecommons.org/licenses/by/4.0/",
+    isFamilyFriendly: true,
+  };
+
+  // A TechArticle node makes the editorial guide itself first-class for search
+  // engines and AI agents (headline, author, dates, what it's about).
+  const article = {
+    "@type": "TechArticle",
+    "@id": `${url}/#article`,
+    headline: dict.meta.title,
+    description: dict.meta.description,
+    inLanguage: lang,
+    url,
+    mainEntityOfPage: { "@id": `${url}/#webpage` },
+    image: OG_IMAGE,
+    datePublished: "2026-06-03",
+    dateModified: new Date().toISOString().slice(0, 10),
+    author: { "@id": `${SITE_URL}/#author` },
+    publisher: { "@id": `${SITE_URL}/#publisher` },
+    about: games.map((game) => ({ "@id": game["@id"] })),
+    license: "https://creativecommons.org/licenses/by/4.0/",
+    isAccessibleForFree: true,
   };
 
   const breadcrumb = {
@@ -109,6 +142,15 @@ export function buildJsonLd(locale: Locale, dict: Dictionary) {
 
   return {
     "@context": "https://schema.org",
-    "@graph": [publisher, author, website, webPage, breadcrumb, ...games, faqPage],
+    "@graph": [
+      publisher,
+      author,
+      website,
+      webPage,
+      article,
+      breadcrumb,
+      ...games,
+      faqPage,
+    ],
   };
 }

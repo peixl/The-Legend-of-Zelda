@@ -1,6 +1,23 @@
 import type { MetadataRoute } from "next";
 import { locales } from "@/lib/i18n/config";
-import { localeUrl } from "@/lib/seo/site";
+import { SITE_URL, localeUrl } from "@/lib/seo/site";
+
+// Machine-readable discovery resources we want search engines and AI agents to
+// crawl alongside the localized pages.
+const DISCOVERY: Array<{
+  path: string;
+  changeFrequency: MetadataRoute.Sitemap[number]["changeFrequency"];
+  priority: number;
+}> = [
+  { path: "/api/guide", changeFrequency: "weekly", priority: 0.8 },
+  { path: "/api/guide/zh", changeFrequency: "weekly", priority: 0.8 },
+  { path: "/api/guide/en", changeFrequency: "weekly", priority: 0.8 },
+  { path: "/llms.txt", changeFrequency: "weekly", priority: 0.7 },
+  { path: "/llms-full.txt", changeFrequency: "weekly", priority: 0.7 },
+  { path: "/agent.md", changeFrequency: "monthly", priority: 0.6 },
+  { path: "/ai-welcome.md", changeFrequency: "monthly", priority: 0.5 },
+  { path: "/.well-known/ai.txt", changeFrequency: "monthly", priority: 0.5 },
+];
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const lastModified = new Date();
@@ -10,11 +27,20 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "x-default": localeUrl("en"),
   };
 
-  return locales.map((lang) => ({
+  const pages: MetadataRoute.Sitemap = locales.map((lang) => ({
     url: localeUrl(lang),
     lastModified,
     changeFrequency: "weekly",
     priority: lang === "zh" ? 1 : 0.9,
     alternates: { languages },
   }));
+
+  const discovery: MetadataRoute.Sitemap = DISCOVERY.map((entry) => ({
+    url: `${SITE_URL}${entry.path}`,
+    lastModified,
+    changeFrequency: entry.changeFrequency,
+    priority: entry.priority,
+  }));
+
+  return [...pages, ...discovery];
 }

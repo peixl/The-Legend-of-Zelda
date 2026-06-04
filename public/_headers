@@ -1,0 +1,69 @@
+# Cloudflare Workers static-asset headers.
+#
+# Static files in public/ are served by the assets layer *before* the Worker
+# runs, so worker/index.ts cannot set their headers. This file covers them:
+#   1) long immutable cache for fingerprint-free media (perf, esp. slow / CN networks)
+#   2) AI-agent policy + CORS on machine-readable docs so agents can fetch them.
+# Dynamic routes (HTML, /robots.txt, /sitemap.xml, /api/*) are handled in the Worker.
+
+# --- Content-hashed app bundles (vinext output) — cache immutably ---
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# --- Static media: safe to cache hard (content-stable) ---
+/*.webp
+  Cache-Control: public, max-age=31536000, immutable
+/*.avif
+  Cache-Control: public, max-age=31536000, immutable
+/*.jpeg
+  Cache-Control: public, max-age=31536000, immutable
+/*.jpg
+  Cache-Control: public, max-age=31536000, immutable
+/*.png
+  Cache-Control: public, max-age=31536000, immutable
+/*.svg
+  Cache-Control: public, max-age=31536000, immutable
+/*.ico
+  Cache-Control: public, max-age=31536000, immutable
+
+# --- PWA manifest ---
+/manifest.webmanifest
+  Cache-Control: public, max-age=3600, stale-while-revalidate=86400
+  Access-Control-Allow-Origin: *
+
+# --- Machine-readable docs for AI agents (cross-origin + policy signals) ---
+/llms.txt
+  Cache-Control: public, max-age=3600, stale-while-revalidate=86400
+  Access-Control-Allow-Origin: *
+  X-Robots-Tag: all, max-image-preview:large, max-snippet:-1, max-video-preview:-1
+  X-AI-Policy: index, summarize, cite-with-link; attribution=https://zelda.ifq.ai
+  X-AI-Welcome: yes; license=public-summary; attribution=https://zelda.ifq.ai
+  TDM-Reservation: 0
+/llms-full.txt
+  Cache-Control: public, max-age=3600, stale-while-revalidate=86400
+  Access-Control-Allow-Origin: *
+  X-Robots-Tag: all, max-image-preview:large, max-snippet:-1, max-video-preview:-1
+  X-AI-Policy: index, summarize, cite-with-link; attribution=https://zelda.ifq.ai
+  X-AI-Welcome: yes; license=public-summary; attribution=https://zelda.ifq.ai
+  TDM-Reservation: 0
+/agent.md
+  Cache-Control: public, max-age=3600, stale-while-revalidate=86400
+  Access-Control-Allow-Origin: *
+  X-Robots-Tag: all, max-image-preview:large, max-snippet:-1, max-video-preview:-1
+  X-AI-Policy: index, summarize, cite-with-link; attribution=https://zelda.ifq.ai
+  X-AI-Welcome: yes; license=public-summary; attribution=https://zelda.ifq.ai
+  TDM-Reservation: 0
+/ai-welcome.md
+  Cache-Control: public, max-age=3600, stale-while-revalidate=86400
+  Access-Control-Allow-Origin: *
+  X-Robots-Tag: all, max-image-preview:large, max-snippet:-1, max-video-preview:-1
+  X-AI-Policy: index, summarize, cite-with-link; attribution=https://zelda.ifq.ai
+  X-AI-Welcome: yes; license=public-summary; attribution=https://zelda.ifq.ai
+  TDM-Reservation: 0
+/.well-known/*
+  Cache-Control: public, max-age=3600, stale-while-revalidate=86400
+  Access-Control-Allow-Origin: *
+  X-Robots-Tag: all, max-image-preview:large, max-snippet:-1, max-video-preview:-1
+  X-AI-Policy: index, summarize, cite-with-link; attribution=https://zelda.ifq.ai
+  X-AI-Welcome: yes; license=public-summary; attribution=https://zelda.ifq.ai
+  TDM-Reservation: 0
