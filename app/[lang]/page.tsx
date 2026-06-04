@@ -33,6 +33,7 @@ import {
   localeUrl,
 } from "@/lib/seo/site";
 import { LangSwitch } from "@/components/lang-switch";
+import { MobileNav } from "@/components/mobile-nav";
 
 export function generateStaticParams() {
   return locales.map((lang) => ({ lang }));
@@ -112,14 +113,24 @@ export default async function Home({
           <Crown aria-hidden="true" size={18} />
           {t.nav.brand}
         </a>
-        <nav>
+        <nav className="nav-inline">
           {t.nav.links.map((link) => (
             <a href={link.href} key={link.href}>
               {link.label}
             </a>
           ))}
         </nav>
-        <LangSwitch current={locale} label={t.nav.langLabel} />
+        <div className="nav-actions">
+          <LangSwitch current={locale} label={t.nav.langLabel} />
+          <MobileNav
+            closeLabel={t.nav.closeLabel}
+            label={t.nav.ariaLabel}
+            langLabel={t.nav.langLabel}
+            links={t.nav.links}
+            locale={locale}
+            menuLabel={t.nav.menuLabel}
+          />
+        </div>
       </header>
 
       <section className="hero" id="top">

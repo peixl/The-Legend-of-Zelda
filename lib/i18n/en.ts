@@ -37,6 +37,8 @@ export const en: Dictionary = {
     ],
     ariaLabel: "Primary navigation",
     langLabel: "语言",
+    menuLabel: "Open menu",
+    closeLabel: "Close menu",
   },
   hero: {
     eyebrow: "Unofficial in-depth fan guide",

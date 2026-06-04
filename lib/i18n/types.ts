@@ -1,4 +1,4 @@
-interface NavLink {
+export interface NavLink {
   label: string;
   href: string;
 }
@@ -96,6 +96,8 @@ export interface Dictionary {
     links: NavLink[];
     ariaLabel: string;
     langLabel: string;
+    menuLabel: string;
+    closeLabel: string;
   };
   hero: {
     eyebrow: string;

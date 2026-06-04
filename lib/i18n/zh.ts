@@ -37,6 +37,8 @@ export const zh: Dictionary = {
     ],
     ariaLabel: "主导航",
     langLabel: "Language",
+    menuLabel: "打开菜单",
+    closeLabel: "关闭菜单",
   },
   hero: {
     eyebrow: "非官方粉丝深度攻略",
