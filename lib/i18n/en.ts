@@ -35,6 +35,7 @@ export const en: Dictionary = {
       { label: "FAQ", href: "#faq" },
       { label: "Checklists", href: "#checklist" },
     ],
+    guideLink: "BOTW Walkthrough",
     ariaLabel: "Primary navigation",
     langLabel: "语言",
     menuLabel: "Open menu",

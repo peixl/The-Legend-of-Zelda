@@ -35,6 +35,7 @@ export const zh: Dictionary = {
       { label: "常见问题", href: "#faq" },
       { label: "收集清单", href: "#checklist" },
     ],
+    guideLink: "练强攻略",
     ariaLabel: "主导航",
     langLabel: "Language",
     menuLabel: "打开菜单",

@@ -22,6 +22,7 @@ export function MobileNav({
   closeLabel,
   locale,
   langLabel,
+  langBasePath = "",
 }: {
   links: NavLink[];
   label: string;
@@ -29,6 +30,8 @@ export function MobileNav({
   closeLabel: string;
   locale: Locale;
   langLabel: string;
+  /** Path suffix kept when switching locale from the drawer. */
+  langBasePath?: string;
 }) {
   const [open, setOpen] = useState(false);
   const isClient = useIsClient();
@@ -65,7 +68,7 @@ export function MobileNav({
         ))}
         <div className="mobile-nav-lang">
           <span>{langLabel}</span>
-          <LangSwitch current={locale} label={langLabel} />
+          <LangSwitch basePath={langBasePath} current={locale} label={langLabel} />
         </div>
       </nav>
     </>

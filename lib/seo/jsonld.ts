@@ -1,6 +1,7 @@
 import type { Locale } from "@/lib/i18n/config";
 import { htmlLang } from "@/lib/i18n/config";
 import type { Dictionary } from "@/lib/i18n/types";
+import type { BotwGuideDictionary } from "@/lib/i18n/botw-guide";
 import { AUTHOR, BRAND, OG_IMAGE, REPO_URL, SITE_URL, localeUrl } from "./site";
 
 /**
@@ -152,5 +153,112 @@ export function buildJsonLd(locale: Locale, dict: Dictionary) {
       ...games,
       faqPage,
     ],
+  };
+}
+
+/**
+ * Self-contained JSON-LD for the BOTW walkthrough sub-page: a TechArticle plus
+ * a HowTo describing the three-stage growth route, wired to the BOTW game,
+ * publisher, and author. Mirrors the structure of `buildJsonLd` so search
+ * engines and AI agents treat the page as a first-class guide.
+ */
+export function buildBotwGuideJsonLd(locale: Locale, guide: BotwGuideDictionary) {
+  const url = `${SITE_URL}/${locale}/botw-guide`;
+  const lang = htmlLang[locale];
+
+  const publisher = {
+    "@type": "Organization",
+    "@id": `${SITE_URL}/#publisher`,
+    name: BRAND.name,
+    url: BRAND.url,
+    logo: { "@type": "ImageObject", url: BRAND.logo },
+    sameAs: [BRAND.url, REPO_URL],
+  };
+
+  const author = {
+    "@type": "Person",
+    "@id": `${SITE_URL}/#author`,
+    name: AUTHOR.name,
+    url: AUTHOR.url,
+    sameAs: [AUTHOR.url],
+  };
+
+  const game = {
+    "@type": "VideoGame",
+    "@id": `${SITE_URL}/#game-botw`,
+    name: "The Legend of Zelda: Breath of the Wild",
+    alternateName: ["塞尔达传说：旷野之息", "BOTW"],
+    gamePlatform: ["Nintendo Switch", "Wii U"],
+    publisher: { "@type": "Organization", name: "Nintendo" },
+  };
+
+  const article = {
+    "@type": "TechArticle",
+    "@id": `${url}/#article`,
+    headline: guide.meta.title,
+    description: guide.meta.description,
+    inLanguage: lang,
+    url,
+    mainEntityOfPage: { "@id": `${url}/#webpage` },
+    image: OG_IMAGE,
+    datePublished: "2026-06-09",
+    dateModified: new Date().toISOString().slice(0, 10),
+    author: { "@id": `${SITE_URL}/#author` },
+    publisher: { "@id": `${SITE_URL}/#publisher` },
+    about: { "@id": `${SITE_URL}/#game-botw` },
+    keywords: guide.meta.keywords.join(", "),
+    license: "https://creativecommons.org/licenses/by/4.0/",
+    isAccessibleForFree: true,
+  };
+
+  const howTo = {
+    "@type": "HowTo",
+    "@id": `${url}/#howto`,
+    name: guide.route.title,
+    description: guide.route.note,
+    inLanguage: lang,
+    about: { "@id": `${SITE_URL}/#game-botw` },
+    step: guide.route.stages.map((stage, index) => ({
+      "@type": "HowToStep",
+      position: index + 1,
+      name: stage.panel.title,
+      text: stage.panel.intro,
+      itemListElement: stage.panel.goals.map((goal) => ({
+        "@type": "HowToDirection",
+        text: goal,
+      })),
+    })),
+  };
+
+  const breadcrumb = {
+    "@type": "BreadcrumbList",
+    "@id": `${url}/#breadcrumb`,
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: BRAND.name, item: BRAND.url },
+      { "@type": "ListItem", position: 2, name: guide.nav.brand, item: localeUrl(locale) },
+      { "@type": "ListItem", position: 3, name: guide.nav.brand, item: url },
+    ],
+  };
+
+  const webPage = {
+    "@type": "WebPage",
+    "@id": `${url}/#webpage`,
+    url,
+    name: guide.meta.title,
+    description: guide.meta.description,
+    inLanguage: lang,
+    isPartOf: { "@id": `${SITE_URL}/#website` },
+    about: { "@id": `${SITE_URL}/#game-botw` },
+    primaryImageOfPage: { "@type": "ImageObject", url: OG_IMAGE },
+    author: { "@id": `${SITE_URL}/#author` },
+    publisher: { "@id": `${SITE_URL}/#publisher` },
+    breadcrumb: { "@id": `${url}/#breadcrumb` },
+    isAccessibleForFree: true,
+    isFamilyFriendly: true,
+  };
+
+  return {
+    "@context": "https://schema.org",
+    "@graph": [publisher, author, game, webPage, article, howTo, breadcrumb],
   };
 }

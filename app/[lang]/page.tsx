@@ -100,6 +100,10 @@ export default async function Home({
   const locale = lang as Locale;
   const t = getDictionary(locale);
   const jsonLd = buildJsonLd(locale, t);
+  const navLinks = [
+    ...t.nav.links,
+    { label: t.nav.guideLink, href: `/${locale}/botw-guide` },
+  ];
 
   return (
     <main>
@@ -114,7 +118,7 @@ export default async function Home({
           {t.nav.brand}
         </a>
         <nav className="nav-inline">
-          {t.nav.links.map((link) => (
+          {navLinks.map((link) => (
             <a href={link.href} key={link.href}>
               {link.label}
             </a>
@@ -126,7 +130,7 @@ export default async function Home({
             closeLabel={t.nav.closeLabel}
             label={t.nav.ariaLabel}
             langLabel={t.nav.langLabel}
-            links={t.nav.links}
+            links={navLinks}
             locale={locale}
             menuLabel={t.nav.menuLabel}
           />

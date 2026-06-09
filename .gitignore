@@ -22,6 +22,7 @@
 
 # vinext / cloudflare build output + local state
 /dist
+/.vinext/
 .wrangler
 
 # local scratch / agent work artifacts (screenshots, dist tarballs, etc.)

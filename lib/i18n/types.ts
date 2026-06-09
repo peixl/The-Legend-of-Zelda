@@ -94,6 +94,7 @@ export interface Dictionary {
   nav: {
     brand: string;
     links: NavLink[];
+    guideLink: string;
     ariaLabel: string;
     langLabel: string;
     menuLabel: string;

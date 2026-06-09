@@ -35,6 +35,20 @@ export default function sitemap(): MetadataRoute.Sitemap {
     alternates: { languages },
   }));
 
+  const guideLanguages = {
+    "zh-Hans": `${SITE_URL}/zh/botw-guide`,
+    en: `${SITE_URL}/en/botw-guide`,
+    "x-default": `${SITE_URL}/en/botw-guide`,
+  };
+
+  const guidePages: MetadataRoute.Sitemap = locales.map((lang) => ({
+    url: `${SITE_URL}/${lang}/botw-guide`,
+    lastModified,
+    changeFrequency: "monthly",
+    priority: 0.85,
+    alternates: { languages: guideLanguages },
+  }));
+
   const discovery: MetadataRoute.Sitemap = DISCOVERY.map((entry) => ({
     url: `${SITE_URL}${entry.path}`,
     lastModified,
@@ -42,5 +56,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: entry.priority,
   }));
 
-  return [...pages, ...discovery];
+  return [...pages, ...guidePages, ...discovery];
 }
