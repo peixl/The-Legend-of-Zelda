@@ -1,14 +1,13 @@
 "use client";
 
 import { useMemo, useSyncExternalStore } from "react";
-import type { BotwGuideDictionary } from "@/lib/i18n/botw-guide";
+import type { GuideDictionary } from "@/lib/i18n/guide-types";
 
-type Group = BotwGuideDictionary["checklist"]["groups"][number];
-
-const STORAGE_KEY = "botw-guide-tasks";
+type Group = GuideDictionary["checklist"]["groups"][number];
 
 // Treat localStorage as an external store so reads stay SSR-safe (no hydration
-// gap) and ticks sync across tabs — instead of a setState-in-effect.
+// gap) and ticks sync across tabs — instead of a setState-in-effect. The key is
+// passed per guide so BOTW and TOTK progress are stored independently.
 const listeners = new Set<() => void>();
 
 function emitChange() {
@@ -24,21 +23,25 @@ function subscribe(callback: () => void) {
   };
 }
 
-function getSnapshot() {
-  try {
-    return localStorage.getItem(STORAGE_KEY) ?? "";
-  } catch {
-    return "";
-  }
-}
-
-function getServerSnapshot() {
-  return "";
-}
-
-/** Progress checklist persisted to localStorage. */
-export function GuideChecklist({ groups }: { groups: Group[] }) {
-  const raw = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
+/** Progress checklist persisted to localStorage under `storageKey`. */
+export function GuideChecklist({
+  groups,
+  storageKey,
+}: {
+  groups: Group[];
+  storageKey: string;
+}) {
+  const raw = useSyncExternalStore(
+    subscribe,
+    () => {
+      try {
+        return localStorage.getItem(storageKey) ?? "";
+      } catch {
+        return "";
+      }
+    },
+    () => "",
+  );
 
   const checked = useMemo<Record<string, boolean>>(() => {
     if (!raw) return {};
@@ -52,7 +55,7 @@ export function GuideChecklist({ groups }: { groups: Group[] }) {
   const toggle = (id: string) => {
     const next = { ...checked, [id]: !checked[id] };
     try {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(next));
+      localStorage.setItem(storageKey, JSON.stringify(next));
     } catch {
       // Ignore write failures (private mode, quota); UI updates won't persist.
     }

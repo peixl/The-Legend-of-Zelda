@@ -1,25 +1,26 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { Flame, Heart, MapPinned, Shield, Sparkles, Sword } from "lucide-react";
+import { Flame, Hammer, Heart, MapPinned, Shield, Sparkles } from "lucide-react";
 import { isLocale, locales, ogLocale, type Locale } from "@/lib/i18n/config";
-import { getBotwGuide } from "@/lib/i18n/botw-guide";
-import { getBotwSurvival } from "@/lib/i18n/botw-survival";
 import { getTotkGuide } from "@/lib/i18n/totk-guide";
+import { getTotkFuseLab } from "@/lib/i18n/totk-fuse-lab";
+import { getBotwGuide } from "@/lib/i18n/botw-guide";
 import { buildGuideJsonLd } from "@/lib/seo/jsonld";
 import { OG_IMAGE, SITE_URL } from "@/lib/seo/site";
 import { GuidePage } from "@/components/guide/guide-page";
-import { BotwSurvivalBoard } from "@/components/guide/botw-survival-board";
+import { TotkFuseLab } from "@/components/guide/totk-fuse-lab";
 
-const BASE_PATH = "/botw-guide";
+const BASE_PATH = "/totk-guide";
 
 const GAME = {
-  id: "game-botw",
-  name: "The Legend of Zelda: Breath of the Wild",
-  alternateName: ["塞尔达传说：旷野之息", "BOTW"],
-  gamePlatform: ["Nintendo Switch", "Wii U"],
+  id: "game-totk",
+  name: "The Legend of Zelda: Tears of the Kingdom",
+  alternateName: ["塞尔达传说：王国之泪", "TOTK"],
+  gamePlatform: ["Nintendo Switch"],
 };
 
-const growthIcons = [Heart, Shield, Flame, Sword, MapPinned, Sparkles];
+// Order matches the growth cards: Shrine, Armor, Cooking, Fuse, Zonai, Map.
+const growthIcons = [Heart, Shield, Flame, Hammer, Sparkles, MapPinned];
 
 export function generateStaticParams() {
   return locales.map((lang) => ({ lang }));
@@ -36,7 +37,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { lang } = await params;
   if (!isLocale(lang)) return {};
-  const g = getBotwGuide(lang);
+  const g = getTotkGuide(lang);
   const url = guideUrl(lang);
 
   return {
@@ -71,7 +72,7 @@ export async function generateMetadata({
   };
 }
 
-export default async function BotwGuidePage({
+export default async function TotkGuidePage({
   params,
 }: {
   params: Promise<{ lang: string }>;
@@ -79,7 +80,7 @@ export default async function BotwGuidePage({
   const { lang } = await params;
   if (!isLocale(lang)) notFound();
   const locale = lang as Locale;
-  const dict = getBotwGuide(locale);
+  const dict = getTotkGuide(locale);
   const jsonLd = buildGuideJsonLd(locale, dict, { basePath: BASE_PATH, game: GAME });
 
   return (
@@ -87,17 +88,17 @@ export default async function BotwGuidePage({
       basePath={BASE_PATH}
       dict={dict}
       growthIcons={growthIcons}
-      heroVariant="botw"
+      heroVariant="totk"
       jsonLd={jsonLd}
       locale={locale}
       sibling={{
-        label: getTotkGuide(locale).nav.crossLabel,
-        href: `/${locale}/totk-guide`,
+        label: getBotwGuide(locale).nav.crossLabel,
+        href: `/${locale}/botw-guide`,
       }}
-      signature={<BotwSurvivalBoard data={getBotwSurvival(locale)} />}
+      signature={<TotkFuseLab data={getTotkFuseLab(locale)} />}
       signatureAfter="route"
-      storageKey="botw-guide-tasks"
-      theme="botw"
+      storageKey="totk-guide-tasks"
+      theme="totk"
     />
   );
 }

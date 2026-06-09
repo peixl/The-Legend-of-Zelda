@@ -17,6 +17,8 @@ License: MIT (code) · CC BY 4.0 (guide text). Attribution to "IFQ.AI / zelda.if
 - [English guide (en)](https://zelda.ifq.ai/en): Full English in-depth guide to BOTW & TOTK.
 - [旷野之息练强攻略 (zh)](https://zelda.ifq.ai/zh/botw-guide): 照着走就能变强的 BOTW 成长路线图（神庙、精力、防具、料理、盾反、神兽、强敌、可勾选清单）。
 - [BOTW walkthrough (en)](https://zelda.ifq.ai/en/botw-guide): A follow-along Breath of the Wild growth route — shrines, stamina, armor, cooking, parries, Divine Beasts, tough foes, and a tickable checklist.
+- [王国之泪练强攻略 (zh)](https://zelda.ifq.ai/zh/totk-guide): 照着走就能变强的 TOTK 成长路线图（究极手、余料建造、天望塔、光根、左纳乌电池、五贤者、三头龙、瘴气之手、可勾选清单）。
+- [TOTK walkthrough (en)](https://zelda.ifq.ai/en/totk-guide): A follow-along Tears of the Kingdom growth route — Ultrahand, Fuse, Skyview Towers, Lightroots, Zonai batteries, the five Sages, Gleeoks, Gloom Hands, and a tickable checklist.
 
 ## Structured data for agents (preferred for machine consumption)
 - [Guide JSON — 中文](https://zelda.ifq.ai/api/guide/zh): Full structured guide content as JSON (CORS-enabled).

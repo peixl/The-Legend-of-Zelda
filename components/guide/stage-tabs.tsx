@@ -1,17 +1,17 @@
 "use client";
 
 import { useRef, useState } from "react";
-import type { BotwGuideDictionary } from "@/lib/i18n/botw-guide";
+import type { GuideDictionary } from "@/lib/i18n/guide-types";
 
-type Stage = BotwGuideDictionary["route"]["stages"][number];
+type Stage = GuideDictionary["route"]["stages"][number];
 
 function ordinal(index: number) {
   return String(index + 1).padStart(2, "0");
 }
 
 /**
- * Stage switcher for the route section. Improves on the original click-only
- * tabs with a proper roving-tabindex + arrow-key tablist (WAI-ARIA pattern).
+ * Stage switcher for the route section. Roving-tabindex + arrow-key tablist
+ * (WAI-ARIA pattern), shared by every guide route.
  */
 export function StageTabs({ stages, label }: { stages: Stage[]; label: string }) {
   const [active, setActive] = useState(0);

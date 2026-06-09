@@ -36,6 +36,7 @@ export const en: Dictionary = {
       { label: "Checklists", href: "#checklist" },
     ],
     guideLink: "BOTW Walkthrough",
+    totkGuideLink: "TOTK Walkthrough",
     ariaLabel: "Primary navigation",
     langLabel: "语言",
     menuLabel: "Open menu",

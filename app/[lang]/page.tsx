@@ -103,6 +103,7 @@ export default async function Home({
   const navLinks = [
     ...t.nav.links,
     { label: t.nav.guideLink, href: `/${locale}/botw-guide` },
+    { label: t.nav.totkGuideLink, href: `/${locale}/totk-guide` },
   ];
 
   return (

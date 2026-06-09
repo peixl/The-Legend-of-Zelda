@@ -1,7 +1,7 @@
 import type { Locale } from "@/lib/i18n/config";
 import { htmlLang } from "@/lib/i18n/config";
 import type { Dictionary } from "@/lib/i18n/types";
-import type { BotwGuideDictionary } from "@/lib/i18n/botw-guide";
+import type { GuideDictionary } from "@/lib/i18n/guide-types";
 import { AUTHOR, BRAND, OG_IMAGE, REPO_URL, SITE_URL, localeUrl } from "./site";
 
 /**
@@ -157,14 +157,22 @@ export function buildJsonLd(locale: Locale, dict: Dictionary) {
 }
 
 /**
- * Self-contained JSON-LD for the BOTW walkthrough sub-page: a TechArticle plus
- * a HowTo describing the three-stage growth route, wired to the BOTW game,
- * publisher, and author. Mirrors the structure of `buildJsonLd` so search
- * engines and AI agents treat the page as a first-class guide.
+ * Self-contained JSON-LD for a single-game walkthrough sub-page: a TechArticle
+ * plus a HowTo describing the three-stage growth route, wired to the relevant
+ * game, publisher, and author. Mirrors the structure of `buildJsonLd` so search
+ * engines and AI agents treat each guide as a first-class page.
  */
-export function buildBotwGuideJsonLd(locale: Locale, guide: BotwGuideDictionary) {
-  const url = `${SITE_URL}/${locale}/botw-guide`;
+export function buildGuideJsonLd(
+  locale: Locale,
+  guide: GuideDictionary,
+  opts: {
+    basePath: string;
+    game: { id: string; name: string; alternateName: string[]; gamePlatform: string[] };
+  },
+) {
+  const url = `${SITE_URL}/${locale}${opts.basePath}`;
   const lang = htmlLang[locale];
+  const gameRef = `${SITE_URL}/#${opts.game.id}`;
 
   const publisher = {
     "@type": "Organization",
@@ -185,10 +193,10 @@ export function buildBotwGuideJsonLd(locale: Locale, guide: BotwGuideDictionary)
 
   const game = {
     "@type": "VideoGame",
-    "@id": `${SITE_URL}/#game-botw`,
-    name: "The Legend of Zelda: Breath of the Wild",
-    alternateName: ["塞尔达传说：旷野之息", "BOTW"],
-    gamePlatform: ["Nintendo Switch", "Wii U"],
+    "@id": gameRef,
+    name: opts.game.name,
+    alternateName: opts.game.alternateName,
+    gamePlatform: opts.game.gamePlatform,
     publisher: { "@type": "Organization", name: "Nintendo" },
   };
 
@@ -205,7 +213,7 @@ export function buildBotwGuideJsonLd(locale: Locale, guide: BotwGuideDictionary)
     dateModified: new Date().toISOString().slice(0, 10),
     author: { "@id": `${SITE_URL}/#author` },
     publisher: { "@id": `${SITE_URL}/#publisher` },
-    about: { "@id": `${SITE_URL}/#game-botw` },
+    about: { "@id": gameRef },
     keywords: guide.meta.keywords.join(", "),
     license: "https://creativecommons.org/licenses/by/4.0/",
     isAccessibleForFree: true,
@@ -217,7 +225,7 @@ export function buildBotwGuideJsonLd(locale: Locale, guide: BotwGuideDictionary)
     name: guide.route.title,
     description: guide.route.note,
     inLanguage: lang,
-    about: { "@id": `${SITE_URL}/#game-botw` },
+    about: { "@id": gameRef },
     step: guide.route.stages.map((stage, index) => ({
       "@type": "HowToStep",
       position: index + 1,
@@ -248,7 +256,7 @@ export function buildBotwGuideJsonLd(locale: Locale, guide: BotwGuideDictionary)
     description: guide.meta.description,
     inLanguage: lang,
     isPartOf: { "@id": `${SITE_URL}/#website` },
-    about: { "@id": `${SITE_URL}/#game-botw` },
+    about: { "@id": gameRef },
     primaryImageOfPage: { "@type": "ImageObject", url: OG_IMAGE },
     author: { "@id": `${SITE_URL}/#author` },
     publisher: { "@id": `${SITE_URL}/#publisher` },

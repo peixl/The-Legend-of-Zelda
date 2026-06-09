@@ -1,104 +1,9 @@
 import type { Locale } from "./config";
+import type { GuideDictionary } from "./guide-types";
 
-/**
- * Self-contained dictionary for the BOTW walkthrough sub-page
- * (`/[lang]/botw-guide`). Kept separate from the main `Dictionary` so the
- * homepage type stays focused. Icons for the growth cards are chosen in the
- * page (lucide-react), so they live there, not here.
- */
-export interface BotwGuideDictionary {
+export const botwGuideZh: GuideDictionary = {
   meta: {
-    title: string;
-    description: string;
-    keywords: string[];
-    ogAlt: string;
-  };
-  nav: {
-    brand: string;
-    links: { label: string; href: string }[];
-    home: string;
-    ariaLabel: string;
-    langLabel: string;
-    menuLabel: string;
-    closeLabel: string;
-  };
-  hero: {
-    kicker: string;
-    titleLead: string;
-    titleMain: string;
-    titleEm: string;
-    lead: string;
-    imageAlt: string;
-    panelTitle: string;
-    stats: { value: string; label: string }[];
-  };
-  route: {
-    eyebrow: string;
-    title: string;
-    note: string;
-    cards: { tag: string; title: string; text: string; points: string[] }[];
-    stageLabel: string;
-    stages: {
-      id: string;
-      name: string;
-      small: string;
-      panel: {
-        title: string;
-        intro: string;
-        goalsLabel: string;
-        goals: string[];
-        avoidLabel: string;
-        avoid: string[];
-      };
-    }[];
-  };
-  growth: {
-    eyebrow: string;
-    title: string;
-    note: string;
-    cards: { badge: string; title: string; steps: string[] }[];
-  };
-  combat: {
-    eyebrow: string;
-    title: string;
-    note: string;
-    drills: { summary: string; intro: string; steps: string[] }[];
-    controlsTitle: string;
-    keys: { key: string; desc: string }[];
-  };
-  food: {
-    eyebrow: string;
-    title: string;
-    note: string;
-    recipes: { badge: string; title: string; text: string; materials: string }[];
-  };
-  beasts: {
-    eyebrow: string;
-    title: string;
-    note: string;
-    cards: { order: string; badge: string; title: string; text: string; points: string[] }[];
-  };
-  enemies: {
-    eyebrow: string;
-    title: string;
-    note: string;
-    cards: { badge: string; title: string; text: string; points: string[] }[];
-  };
-  checklist: {
-    eyebrow: string;
-    title: string;
-    note: string;
-    groups: { title: string; tasks: { id: string; label: string }[] }[];
-  };
-  footer: {
-    note: string;
-    disclaimer: string;
-  };
-}
-
-export const botwGuideZh: BotwGuideDictionary = {
-  meta: {
-    title: "旷野之息练强攻略：把林克练成海拉鲁狠人 | 荒野与王泪攻略书",
+    title: "旷野之息练强攻略：把失忆的林克练成读懂风雨的海拉鲁旅人 | 荒野与王泪攻略书",
     description:
       "一份照着走就能变强的《塞尔达传说：旷野之息》成长路线图——先开塔做神庙、堆精力与防具，再用料理、闪避、盾反和英杰之诗，把战斗难度一点点压下来。",
     keywords: [
@@ -119,13 +24,15 @@ export const botwGuideZh: BotwGuideDictionary = {
     brand: "BOTW 练强攻略",
     links: [
       { label: "路线", href: "#route" },
+      { label: "荒野法则", href: "#survival" },
       { label: "变强", href: "#growth" },
       { label: "战斗", href: "#combat" },
       { label: "料理", href: "#food" },
-      { label: "神兽", href: "#beasts" },
-      { label: "强敌", href: "#enemies" },
+      { label: "四英杰", href: "#beasts" },
+      { label: "陪练", href: "#enemies" },
       { label: "清单", href: "#checklist" },
     ],
+    crossLabel: "旷野之息攻略",
     home: "← 主攻略",
     ariaLabel: "攻略章节导航",
     langLabel: "Language",
@@ -133,13 +40,13 @@ export const botwGuideZh: BotwGuideDictionary = {
     closeLabel: "关闭菜单",
   },
   hero: {
-    kicker: "从初始台地到海拉鲁城堡",
+    kicker: "从初始台地醒来，独自走向海拉鲁城堡",
     titleLead: "旷野之息练强攻略：",
-    titleMain: "把林克练成真正的",
-    titleEm: "海拉鲁狠人",
-    lead: "一份可以照着走的成长路线图：先开塔、做神庙，稳定堆精力和防具，再用料理、闪避、盾反和英杰之诗，把战斗难度一点点压下来。",
+    titleMain: "把失忆的林克，练成读得懂风与雨的",
+    titleEm: "海拉鲁旅人",
+    lead: "旷野之息的强，不在等级，而在你和这片荒野的默契。这份路线图陪你从初始台地一路走下去：开塔、做神庙、堆精力和防具，再学会读天、闪避、盾反，借英杰之诗把难度一寸寸踩平。",
     imageAlt: "旷野之息练强路线图英雄图：海拉鲁山脉、神庙与希卡之塔",
-    panelTitle: "优先级速记",
+    panelTitle: "出发前，记住这四个数字",
     stats: [
       { value: "2圈", label: "前期先把精力堆到两圈，爬山、滑翔、探索效率立刻起飞。" },
       { value: "13心", label: "拔大师剑需要 13 颗真实心心，临时黄心不算数。" },
@@ -148,7 +55,7 @@ export const botwGuideZh: BotwGuideDictionary = {
     ],
   },
   route: {
-    eyebrow: "路线总纲",
+    eyebrow: "把世界走成补给站",
     title: "别急着冲最终 Boss，先把整个海拉鲁变成你的补给站。",
     note: "《旷野之息》的强度不写在等级条上，而藏在探索里。地图、高塔、神庙、材料点、驿站和大妖精之泉开得越多，林克就越自由。",
     cards: [
@@ -242,9 +149,9 @@ export const botwGuideZh: BotwGuideDictionary = {
     ],
   },
   growth: {
-    eyebrow: "成长系统",
+    eyebrow: "变强的入口",
     title: "林克变强的 6 个入口，每个都比单纯捡武器更重要。",
-    note: "武器迟早会坏，所以真正的战斗力来自资源循环：精力让你去到更多地方，材料做出更强料理，防具强化让你吃得住失误。",
+    note: "武器迟早会坏，所以真正的战斗力来自资源循环：精力让你去到更多地方，材料做出更强料理，防具强化让你吃得住失误。这六件事，才是把“能活下来”变成“走到哪儿都从容”的地基。",
     cards: [
       {
         badge: "Shrine",
@@ -303,9 +210,9 @@ export const botwGuideZh: BotwGuideDictionary = {
     ],
   },
   combat: {
-    eyebrow: "战斗训练",
+    eyebrow: "把恐惧练成手感",
     title: "从“被追着跑”到“主动找人马练手”。",
-    note: "战斗别只会按攻击键。锁定、闪避、盾反、偷袭、环境杀是五个核心动作，把它们练熟，装备差一点也能打得漂亮。",
+    note: "战斗别只会按攻击键。锁定、闪避、盾反、偷袭、环境杀是五个核心动作，把它们练熟，装备差一点也能打得漂亮。海拉鲁的强敌不是墙，是磨刀石。",
     drills: [
       {
         summary: "完美闪避：最先该练的核心技",
@@ -361,9 +268,9 @@ export const botwGuideZh: BotwGuideDictionary = {
     ],
   },
   food: {
-    eyebrow: "料理与资源",
+    eyebrow: "锅里的智慧",
     title: "会做饭的林克，比只会挥剑的林克强太多。",
-    note: "每次出门，身上至少带补血、精力、攻击或防御、环境抗性四类料理。材料足时，同一效果 5 个一起煮最省心。",
+    note: "每次出门，身上至少带补血、精力、攻击或防御、环境抗性四类料理。材料足时，同一效果 5 个一起煮最省心——一口锅，就是你随身携带的避难所。",
     recipes: [
       {
         badge: "补命",
@@ -392,9 +299,9 @@ export const botwGuideZh: BotwGuideDictionary = {
     ],
   },
   beasts: {
-    eyebrow: "神兽顺序",
+    eyebrow: "四英杰之诗",
     title: "推荐先拿能改变探索和容错的英杰之诗。",
-    note: "神兽没有绝对顺序，但新手按这条线会舒服很多。雷之神兽 Boss 更难，建议装备、料理、闪避都成熟后再去。",
+    note: "四头神兽里，沉睡着四位百年前为守护海拉鲁而牺牲的英杰。按这条线找回他们的力量，新手会舒服很多；雷之神兽 Boss 更难，建议装备、料理、闪避都成熟后再去。",
     cards: [
       {
         order: "1",
@@ -427,9 +334,9 @@ export const botwGuideZh: BotwGuideDictionary = {
     ],
   },
   enemies: {
-    eyebrow: "强敌打法",
+    eyebrow: "海拉鲁的老师",
     title: "最难的敌人，其实也是最好的陪练。",
-    note: "别第一次见就硬上。先观察招式、带足盾和料理，用低成本方式试错。打赢一次你就会发现：它们都是高级装备的提款机。",
+    note: "别第一次见就硬上。先观察招式、带足盾和料理，用低成本方式试错。打赢一次你就会发现：它们既是高级装备的提款机，也是把你从“能打”逼成“会打”的老师。",
     cards: [
       {
         badge: "Lynel",
@@ -452,7 +359,7 @@ export const botwGuideZh: BotwGuideDictionary = {
     ],
   },
   checklist: {
-    eyebrow: "可勾选清单",
+    eyebrow: "今天往哪走",
     title: "不知道今天玩什么，就照这个循环推进。",
     note: "勾选状态会存在你的浏览器本地。每次开游戏前看一眼，挑 3 到 5 个小目标，林克就会稳定变强。",
     groups: [
@@ -485,9 +392,9 @@ export const botwGuideZh: BotwGuideDictionary = {
   },
 };
 
-export const botwGuideEn: BotwGuideDictionary = {
+export const botwGuideEn: GuideDictionary = {
   meta: {
-    title: "Breath of the Wild Walkthrough: Turn Link Into a True Hyrule Powerhouse | Wild & Tears Field Guide",
+    title: "Breath of the Wild Walkthrough: Turn Amnesiac Link Into a Hyrule Wayfarer Who Reads the Weather | Wild & Tears Field Guide",
     description:
       "A follow-along growth route for The Legend of Zelda: Breath of the Wild — open towers and clear shrines, bank stamina and armor, then use cooking, Flurry Rush, parries, and Champion abilities to crush the difficulty.",
     keywords: [
@@ -508,13 +415,15 @@ export const botwGuideEn: BotwGuideDictionary = {
     brand: "BOTW Walkthrough",
     links: [
       { label: "Route", href: "#route" },
+      { label: "Laws of the wild", href: "#survival" },
       { label: "Get strong", href: "#growth" },
       { label: "Combat", href: "#combat" },
       { label: "Cooking", href: "#food" },
-      { label: "Divine Beasts", href: "#beasts" },
-      { label: "Tough foes", href: "#enemies" },
+      { label: "Champions", href: "#beasts" },
+      { label: "Sparring", href: "#enemies" },
       { label: "Checklist", href: "#checklist" },
     ],
+    crossLabel: "BOTW guide",
     home: "← Main guide",
     ariaLabel: "Walkthrough sections",
     langLabel: "语言",
@@ -522,13 +431,13 @@ export const botwGuideEn: BotwGuideDictionary = {
     closeLabel: "Close menu",
   },
   hero: {
-    kicker: "From the Great Plateau to Hyrule Castle",
+    kicker: "Wake on the Great Plateau, walk alone to Hyrule Castle",
     titleLead: "Breath of the Wild walkthrough: ",
-    titleMain: "turn Link into a real ",
-    titleEm: "Hyrule powerhouse",
-    lead: "A growth route you can simply follow: open towers and clear shrines, steadily bank stamina and armor, then use cooking, dodges, parries, and Champion abilities to grind the difficulty down.",
+    titleMain: "turn amnesiac Link into a ",
+    titleEm: "Hyrule wayfarer who reads the weather",
+    lead: "Strength in Breath of the Wild isn't a level — it's your rapport with the wild. This route walks with you from the Great Plateau: open towers, clear shrines, bank stamina and armor, then learn to read the sky, dodge, and parry, and let the Champion abilities flatten the difficulty inch by inch.",
     imageAlt: "Breath of the Wild growth-route hero art: Hyrule mountains, a shrine, and a Sheikah tower",
-    panelTitle: "Priorities at a glance",
+    panelTitle: "Four numbers to remember before you go",
     stats: [
       { value: "2 wheels", label: "Push stamina to two wheels first — climbing, gliding, and exploring instantly take off." },
       { value: "13 hearts", label: "The Master Sword needs 13 real hearts; temporary yellow hearts don't count." },
@@ -537,7 +446,7 @@ export const botwGuideEn: BotwGuideDictionary = {
     ],
   },
   route: {
-    eyebrow: "Route overview",
+    eyebrow: "Walk the world into a depot",
     title: "Don't rush the final boss — first turn Hyrule itself into your supply depot.",
     note: "In Breath of the Wild, power isn't an XP bar — it's exploration. The more towers, shrines, material spots, stables, and Great Fairy Fountains you open, the freer Link becomes.",
     cards: [
@@ -631,9 +540,9 @@ export const botwGuideEn: BotwGuideDictionary = {
     ],
   },
   growth: {
-    eyebrow: "Growth systems",
+    eyebrow: "Ways to get strong",
     title: "Six ways Link gets stronger — every one beats just picking up weapons.",
-    note: "Weapons break, so real combat power comes from the resource loop: stamina takes you to more places, materials cook into stronger meals, and armor upgrades let you survive your own mistakes.",
+    note: "Weapons break, so real combat power comes from the resource loop: stamina takes you to more places, materials cook into stronger meals, and armor upgrades let you survive your own mistakes. These six are the bedrock that turns \"barely surviving\" into \"at ease anywhere.\"",
     cards: [
       {
         badge: "Shrine",
@@ -692,9 +601,9 @@ export const botwGuideEn: BotwGuideDictionary = {
     ],
   },
   combat: {
-    eyebrow: "Combat training",
+    eyebrow: "Turn fear into feel",
     title: "From “getting chased” to “hunting Lynels for fun”.",
-    note: "Combat is more than the attack button. Lock-on, dodging, parrying, sneakstrikes, and environmental kills are the five core moves. Drill them and you'll fight clean even with mediocre gear.",
+    note: "Combat is more than the attack button. Lock-on, dodging, parrying, sneakstrikes, and environmental kills are the five core moves. Drill them and you'll fight clean even with mediocre gear. Hyrule's elites aren't walls — they're whetstones.",
     drills: [
       {
         summary: "Flurry Rush: the first skill to drill",
@@ -750,9 +659,9 @@ export const botwGuideEn: BotwGuideDictionary = {
     ],
   },
   food: {
-    eyebrow: "Cooking & resources",
+    eyebrow: "Wisdom in the pot",
     title: "A Link who cooks is far stronger than a Link who only swings a sword.",
-    note: "Every time you head out, carry four kinds of meal: healing, stamina, attack or defense, and an environment resist. When materials are plentiful, five of one effect in a pot is the no-brainer.",
+    note: "Every time you head out, carry four kinds of meal: healing, stamina, attack or defense, and an environment resist. When materials are plentiful, five of one effect in a pot is the no-brainer — a cooking pot is the shelter you carry with you.",
     recipes: [
       {
         badge: "Heal",
@@ -781,9 +690,9 @@ export const botwGuideEn: BotwGuideDictionary = {
     ],
   },
   beasts: {
-    eyebrow: "Divine Beast order",
+    eyebrow: "Song of the four Champions",
     title: "Grab the Champion abilities that change exploration and survivability first.",
-    note: "There's no fixed order, but this line is much friendlier for new players. Vah Naboris (thunder) has the hardest boss — go once your gear, meals, and dodging are solid.",
+    note: "Inside the four Divine Beasts sleep four Champions who died a century ago defending Hyrule. Reclaiming their power along this line is much friendlier for new players; Vah Naboris (thunder) has the hardest boss — go once your gear, meals, and dodging are solid.",
     cards: [
       {
         order: "1",
@@ -816,9 +725,9 @@ export const botwGuideEn: BotwGuideDictionary = {
     ],
   },
   enemies: {
-    eyebrow: "Beating tough foes",
+    eyebrow: "Hyrule's tutors",
     title: "The hardest enemies are also your best teachers.",
-    note: "Don't go in swinging on sight. Read the moveset, pack shields and meals, and fail cheaply. Win once and you'll see they're ATMs for high-end gear.",
+    note: "Don't go in swinging on sight. Read the moveset, pack shields and meals, and fail cheaply. Win once and you'll see they're both ATMs for high-end gear and the tutors that push you from \"can fight\" to \"can really fight.\"",
     cards: [
       {
         badge: "Lynel",
@@ -841,7 +750,7 @@ export const botwGuideEn: BotwGuideDictionary = {
     ],
   },
   checklist: {
-    eyebrow: "Tickable checklist",
+    eyebrow: "Where to walk today",
     title: "Not sure what to play today? Just run this loop.",
     note: "Your ticks are saved in this browser. Glance here before each session, pick 3 to 5 small goals, and Link gets steadily stronger.",
     groups: [
@@ -874,11 +783,11 @@ export const botwGuideEn: BotwGuideDictionary = {
   },
 };
 
-const guides: Record<Locale, BotwGuideDictionary> = {
+const guides: Record<Locale, GuideDictionary> = {
   zh: botwGuideZh,
   en: botwGuideEn,
 };
 
-export function getBotwGuide(locale: Locale): BotwGuideDictionary {
+export function getBotwGuide(locale: Locale): GuideDictionary {
   return guides[locale] ?? guides.zh;
 }
